@@ -1,0 +1,28 @@
+name: CI Pipeline
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, edited]
+    branches:
+      - main
+jobs:
+  integration:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v4
+      
+      - name: Install dependencies
+        run: npm install
+
+      - name: Linting
+        run: npm run lint
+
+      - name: Formatting
+        run: npm run prettier ––write
+      
+      - name: Testing
+        run: CI=true npm run test
+      
+      - name: Build
+        run: npm run build
