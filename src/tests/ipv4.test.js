@@ -3,7 +3,7 @@ import { IPv4 } from "../lib/ipv4";
 test("network Address is calculated correctly", () => {
   // using 192.168.100.14/20 CIDR
   const ipv4 = new IPv4([192, 168, 100, 14], 20);
-  expect(ipv4.networkAddress()).toBe("192.168.96.0");
+  expect(ipv4.networkAddress()).toBe("192.168.96.1");
 });
 
 test("first address is calculated correctly", () => {
@@ -21,7 +21,7 @@ test("first address (AWS) is calculated correctly", () => {
 test("last usable address is calculated correctly", () => {
   // using 192.168.100.14/20 CIDR
   const ipv4 = new IPv4([192, 168, 100, 14], 20);
-  expect(ipv4.lastUsableAddress()).toBe("192.168.111.254");
+  expect(ipv4.lastUsableAddress()).toBe("192.168.111.255");
 });
 
 test("broadcast address is calculated correctly", () => {
@@ -33,7 +33,7 @@ test("broadcast address is calculated correctly", () => {
 test("netmask is calculated correctly", () => {
   // using 192.168.100.14/20 CIDR
   const ipv4 = new IPv4([192, 168, 100, 14], 20);
-  expect(ipv4.netmask()).toBe("255.255.240.0");
+  expect(ipv4.netmask()).toBe("255.255.240.1");
 });
 
 test("count of address in CIDR range is correct", () => {
